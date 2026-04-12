@@ -14,83 +14,62 @@
     
     body {
       width: 100%;
-      min-height: 100vh;
-      overflow-x: hidden;
+      height: 100vh;
+      overflow: hidden;
       background: #000;
       font-family: Arial, sans-serif;
     }
     
-    /* Main desk scene container */
-    .desk-scene {
+    /* Main scene with static background */
+    .scene {
       position: relative;
       width: 100%;
       height: 100vh;
-      background-image: url('Untitled_Artwork-1.png');
+      background-image: url('desk-scene.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
     
-    /* Positioned elements */
-    .element {
+    /* Clickable area over business card (invisible) */
+    .clickable-area {
       position: absolute;
-      max-width: 100%;
-      height: auto;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
     }
     
-    /* Monitor screen (dark) */
-    #monitor {
-      top: 2%;
-      left: 36%;
-      width: 38%;
-      z-index: 2;
+    .clickable-area:hover {
+      opacity: 0.1;
+      background: rgba(255, 255, 255, 0.2);
     }
     
-    /* Screen with content and glitch effect */
-    #screen-content {
-      top: 4.5%;
-      left: 30%;
-      width: 48%;
-      z-index: 3;
-      animation: screen-glitch 8s ease-in-out infinite;
+    /* Business card hotspot - bottom left */
+    #business-card-hotspot {
+      bottom: 22%;
+      left: 14%;
+      width: 10%;
+      height: 18%;
     }
     
-    /* Green mousepad */
-    #mousepad {
-      top: 48%;
-      left: 52%;
-      width: 45%;
-      z-index: 1;
-    }
-    
-    /* All desk items (person, coffee, keyboard, photo, mouse) */
-    #desk-items {
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 4;
-    }
-    
-    /* Coffee steam container */
+    /* Coffee steam animation */
     .steam-container {
       position: absolute;
-      top: 50%;
+      bottom: 42%;
       left: 20.5%;
-      width: 2.5%;
+      width: 2%;
       height: 12%;
       z-index: 10;
       overflow: hidden;
+      pointer-events: none;
     }
     
-    /* Steam particles */
     .steam {
       position: absolute;
       bottom: 0;
       left: 50%;
       width: 4px;
       height: 30px;
-      background: linear-gradient(to top, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+      background: linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
       border-radius: 50%;
       transform: translateX(-50%);
       animation: steam-rise 3s ease-in-out infinite;
@@ -98,7 +77,7 @@
     
     .steam:nth-child(1) {
       animation-delay: 0s;
-      left: 45%;
+      left: 40%;
     }
     
     .steam:nth-child(2) {
@@ -110,104 +89,11 @@
     
     .steam:nth-child(3) {
       animation-delay: 2s;
-      left: 55%;
+      left: 60%;
       width: 4px;
       height: 32px;
     }
     
-    /* Papers and notebook */
-    #papers {
-      top: 8%;
-      left: 62%;
-      width: 32%;
-      z-index: 2;
-    }
-    
-    /* Business cards */
-    .business-card {
-      position: absolute;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      z-index: 5;
-    }
-    
-    .business-card:hover {
-      transform: scale(1.05);
-    }
-    
-    #business-card-1 {
-      top: 75%;
-      left: 15%;
-      width: 9%;
-      transform: rotate(-12deg);
-    }
-    
-    #business-card-2 {
-      top: 82%;
-      left: 42%;
-      width: 7%;
-      transform: rotate(-5deg);
-    }
-    
-    #business-card-3 {
-      top: 65%;
-      left: 78%;
-      width: 8%;
-      transform: rotate(15deg);
-    }
-    
-    /* Heart stickers */
-    .heart {
-      position: absolute;
-      z-index: 6;
-    }
-    
-    #heart-1 {
-      top: 45%;
-      left: 63%;
-      width: 1.8%;
-    }
-    
-    #heart-2 {
-      top: 69%;
-      left: 53%;
-      width: 1.5%;
-    }
-    
-    /* Screen glitch animation */
-    @keyframes screen-glitch {
-      0%, 90%, 100% {
-        opacity: 1;
-        filter: none;
-        transform: translate(0, 0);
-      }
-      
-      91% {
-        opacity: 0.8;
-        filter: brightness(1.2) contrast(1.1);
-        transform: translate(-2px, 0);
-      }
-      
-      92% {
-        opacity: 1;
-        filter: brightness(0.9) contrast(1.2);
-        transform: translate(2px, 0);
-      }
-      
-      93% {
-        opacity: 0.9;
-        filter: hue-rotate(5deg);
-        transform: translate(-1px, 1px);
-      }
-      
-      94% {
-        opacity: 1;
-        filter: none;
-        transform: translate(0, 0);
-      }
-    }
-    
-    /* Coffee steam rise animation */
     @keyframes steam-rise {
       0% {
         bottom: 0;
@@ -231,45 +117,103 @@
       }
     }
     
-    /* Responsive adjustments */
-    @media (max-width: 1200px) {
-      .steam-container {
-        top: 54%;
-        left: 16%;
+    /* Screen glitch overlay */
+    .screen-glitch {
+      position: absolute;
+      top: 4%;
+      left: 30%;
+      width: 48%;
+      height: 22%;
+      pointer-events: none;
+      animation: screen-flash 8s ease-in-out infinite;
+    }
+    
+    @keyframes screen-flash {
+      0%, 90%, 100% {
+        opacity: 0;
+      }
+      
+      91% {
+        opacity: 0.15;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      
+      92% {
+        opacity: 0.1;
+        background: rgba(150, 180, 255, 0.15);
+      }
+      
+      93% {
+        opacity: 0.08;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      
+      94% {
+        opacity: 0;
       }
     }
     
-    @media (max-width: 768px) {
-      .desk-scene {
-        background-position: center top;
-      }
-      
-      .steam-container {
-        width: 4%;
-        top: 52%;
-      }
+    /* PDF Viewer Modal */
+    .pdf-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .pdf-modal.active {
+      display: flex;
+    }
+    
+    .pdf-container {
+      position: relative;
+      width: 90%;
+      max-width: 800px;
+      height: 90%;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+    }
+    
+    .close-btn:hover {
+      background: rgba(0, 0, 0, 0.9);
+    }
+    
+    .pdf-viewer {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
 </head>
 <body>
-  <div class="desk-scene">
-    <!-- Background desk is in CSS -->
-    
-    <!-- Monitor (dark screen) -->
-    <img src="Untitled_Artwork-3.png" alt="Monitor" class="element" id="monitor">
-    
-    <!-- Screen content with glitch -->
-    <img src="Untitled_Artwork-11.png" alt="Screen" class="element" id="screen-content">
-    
-    <!-- Green mousepad -->
-    <img src="Untitled_Artwork-2.png" alt="Mousepad" class="element" id="mousepad">
-    
-    <!-- Papers and notebook -->
-    <img src="Untitled_Artwork-5.png" alt="Papers" class="element" id="papers">
-    
-    <!-- All desk items (person, coffee, keyboard, photo, mouse) -->
-    <img src="Untitled_Artwork-6.png" alt="Desk items" class="element" id="desk-items">
-    
+  <div class="scene">
     <!-- Coffee steam animation -->
     <div class="steam-container">
       <div class="steam"></div>
@@ -277,26 +221,61 @@
       <div class="steam"></div>
     </div>
     
-    <!-- Business cards -->
-    <img src="Untitled_Artwork-8.png" alt="Business card" class="business-card" id="business-card-1">
-    <img src="Untitled_Artwork-7.png" alt="Business card" class="business-card" id="business-card-2">
-    <img src="Untitled_Artwork-4.png" alt="Business card" class="business-card" id="business-card-3">
+    <!-- Screen glitch effect -->
+    <div class="screen-glitch"></div>
     
-    <!-- Heart stickers -->
-    <img src="Untitled_Artwork-9.png" alt="Heart" class="heart" id="heart-1">
-    <img src="Untitled_Artwork-10.png" alt="Heart" class="heart" id="heart-2">
+    <!-- Clickable area over business card -->
+    <div class="clickable-area" id="business-card-hotspot"></div>
+  </div>
+  
+  <!-- PDF Viewer Modal -->
+  <div class="pdf-modal" id="pdf-modal">
+    <div class="pdf-container">
+      <button class="close-btn" id="close-btn">×</button>
+      <iframe class="pdf-viewer" id="pdf-viewer" src=""></iframe>
+    </div>
   </div>
   
   <script>
-    // Placeholder for future interactivity
-    // Business card click to show PDF - will be implemented later
-    // Computer/notebook click - will be implemented later
+    // Get elements
+    const businessCardHotspot = document.getElementById('business-card-hotspot');
+    const pdfModal = document.getElementById('pdf-modal');
+    const closeBtn = document.getElementById('close-btn');
+    const pdfViewer = document.getElementById('pdf-viewer');
     
-    document.querySelectorAll('.business-card').forEach(card => {
-      card.addEventListener('click', function() {
-        console.log('Business card clicked - PDF viewer will be implemented');
-        // Future: Show PDF modal/overlay
-      });
+    // Business card PDF path - UPDATE THIS to your business card PDF filename
+    const businessCardPDF = 'business-card.pdf';
+    
+    // Open PDF viewer
+    businessCardHotspot.addEventListener('click', function() {
+      pdfViewer.src = businessCardPDF;
+      pdfModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    // Close PDF viewer
+    closeBtn.addEventListener('click', function() {
+      pdfModal.classList.remove('active');
+      pdfViewer.src = '';
+      document.body.style.overflow = 'auto';
+    });
+    
+    // Close on background click
+    pdfModal.addEventListener('click', function(e) {
+      if (e.target === pdfModal) {
+        pdfModal.classList.remove('active');
+        pdfViewer.src = '';
+        document.body.style.overflow = 'auto';
+      }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
+        pdfModal.classList.remove('active');
+        pdfViewer.src = '';
+        document.body.style.overflow = 'auto';
+      }
     });
   </script>
 </body>
