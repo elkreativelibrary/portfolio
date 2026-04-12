@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>elif sarihan - designer & artist</title>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: #000;
+      font-family: Arial, sans-serif;
+    }
+    
+    /* Main desk scene container */
+    .desk-scene {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-image: url('Untitled_Artwork-1.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    
+    /* Positioned elements */
+    .element {
+      position: absolute;
+      max-width: 100%;
+      height: auto;
+    }
+    
+    /* Monitor screen (dark) */
+    #monitor {
+      top: 3%;
+      left: 30%;
+      width: 40%;
+      z-index: 1;
+    }
+    
+    /* Screen with content and glitch effect */
+    #screen-content {
+      top: 6%;
+      left: 31.5%;
+      width: 37%;
+      z-index: 2;
+      animation: screen-glitch 8s ease-in-out infinite;
+    }
+    
+    /* Green mousepad */
+    #mousepad {
+      top: 45%;
+      left: 50%;
+      width: 44%;
+      z-index: 1;
+    }
+    
+    /* All desk items (person, coffee, keyboard, photo, mouse) */
+    #desk-items {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+    }
+    
+    /* Coffee steam container */
+    .steam-container {
+      position: absolute;
+      top: 56%;
+      left: 17.5%;
+      width: 3%;
+      height: 15%;
+      z-index: 10;
+      overflow: hidden;
+    }
+    
+    /* Steam particles */
+    .steam {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      height: 30px;
+      background: linear-gradient(to top, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+      border-radius: 50%;
+      transform: translateX(-50%);
+      animation: steam-rise 3s ease-in-out infinite;
+    }
+    
+    .steam:nth-child(1) {
+      animation-delay: 0s;
+      left: 45%;
+    }
+    
+    .steam:nth-child(2) {
+      animation-delay: 1s;
+      left: 50%;
+      width: 5px;
+      height: 35px;
+    }
+    
+    .steam:nth-child(3) {
+      animation-delay: 2s;
+      left: 55%;
+      width: 4px;
+      height: 32px;
+    }
+    
+    /* Papers and notebook */
+    #papers {
+      top: 10%;
+      left: 30%;
+      width: 45%;
+      z-index: 2;
+    }
+    
+    /* Business cards */
+    .business-card {
+      position: absolute;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      z-index: 5;
+    }
+    
+    .business-card:hover {
+      transform: scale(1.05);
+    }
+    
+    #business-card-1 {
+      top: 68%;
+      left: 22%;
+      width: 8%;
+    }
+    
+    #business-card-2 {
+      top: 74%;
+      left: 42%;
+      width: 6%;
+    }
+    
+    #business-card-3 {
+      top: 72%;
+      left: 38%;
+      width: 5.5%;
+    }
+    
+    /* Heart stickers */
+    .heart {
+      position: absolute;
+      z-index: 6;
+    }
+    
+    #heart-1 {
+      top: 35%;
+      left: 62%;
+      width: 1.5%;
+    }
+    
+    #heart-2 {
+      top: 70%;
+      left: 51%;
+      width: 1.2%;
+    }
+    
+    /* Screen glitch animation */
+    @keyframes screen-glitch {
+      0%, 90%, 100% {
+        opacity: 1;
+        filter: none;
+        transform: translate(0, 0);
+      }
+      
+      91% {
+        opacity: 0.8;
+        filter: brightness(1.2) contrast(1.1);
+        transform: translate(-2px, 0);
+      }
+      
+      92% {
+        opacity: 1;
+        filter: brightness(0.9) contrast(1.2);
+        transform: translate(2px, 0);
+      }
+      
+      93% {
+        opacity: 0.9;
+        filter: hue-rotate(5deg);
+        transform: translate(-1px, 1px);
+      }
+      
+      94% {
+        opacity: 1;
+        filter: none;
+        transform: translate(0, 0);
+      }
+    }
+    
+    /* Coffee steam rise animation */
+    @keyframes steam-rise {
+      0% {
+        bottom: 0;
+        opacity: 0;
+        transform: translateX(-50%) scale(1);
+      }
+      
+      10% {
+        opacity: 0.6;
+      }
+      
+      50% {
+        opacity: 0.4;
+        transform: translateX(-50%) translateY(-40px) scale(1.5);
+      }
+      
+      100% {
+        bottom: 100%;
+        opacity: 0;
+        transform: translateX(-50%) translateY(-80px) scale(2);
+      }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      .steam-container {
+        top: 54%;
+        left: 16%;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .desk-scene {
+        background-position: center top;
+      }
+      
+      .steam-container {
+        width: 4%;
+        top: 52%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="desk-scene">
+    <!-- Background desk is in CSS -->
+    
+    <!-- Monitor (dark screen) -->
+    <img src="Untitled_Artwork-3.png" alt="Monitor" class="element" id="monitor">
+    
+    <!-- Screen content with glitch -->
+    <img src="Untitled_Artwork-11.png" alt="Screen" class="element" id="screen-content">
+    
+    <!-- Green mousepad -->
+    <img src="Untitled_Artwork-2.png" alt="Mousepad" class="element" id="mousepad">
+    
+    <!-- Papers and notebook -->
+    <img src="Untitled_Artwork-5.png" alt="Papers" class="element" id="papers">
+    
+    <!-- All desk items (person, coffee, keyboard, photo, mouse) -->
+    <img src="Untitled_Artwork-6.png" alt="Desk items" class="element" id="desk-items">
+    
+    <!-- Coffee steam animation -->
+    <div class="steam-container">
+      <div class="steam"></div>
+      <div class="steam"></div>
+      <div class="steam"></div>
+    </div>
+    
+    <!-- Business cards -->
+    <img src="Untitled_Artwork-8.png" alt="Business card" class="business-card" id="business-card-1">
+    <img src="Untitled_Artwork-7.png" alt="Business card" class="business-card" id="business-card-2">
+    <img src="Untitled_Artwork-4.png" alt="Business card" class="business-card" id="business-card-3">
+    
+    <!-- Heart stickers -->
+    <img src="Untitled_Artwork-9.png" alt="Heart" class="heart" id="heart-1">
+    <img src="Untitled_Artwork-10.png" alt="Heart" class="heart" id="heart-2">
+  </div>
+  
+  <script>
+    // Placeholder for future interactivity
+    // Business card click to show PDF - will be implemented later
+    // Computer/notebook click - will be implemented later
+    
+    document.querySelectorAll('.business-card').forEach(card => {
+      card.addEventListener('click', function() {
+        console.log('Business card clicked - PDF viewer will be implemented');
+        // Future: Show PDF modal/overlay
+      });
+    });
+  </script>
+</body>
+</html>
