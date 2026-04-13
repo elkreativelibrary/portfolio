@@ -43,15 +43,27 @@
       background: rgba(255, 255, 255, 0.2);
     }
     
-    /* Business card hotspot - bottom left */
+    /* Business card hotspot - over the receipt on desk */
     #business-card-hotspot {
-      bottom: 22%;
-      left: 14%;
-      width: 10%;
-      height: 18%;
+      bottom: 30%;
+      left: 13%;
+      width: 12%;
+      height: 15%;
     }
     
-    /* Coffee steam animation */
+    /* Animated steam PNG overlay */
+    .steam-animation {
+      position: absolute;
+      bottom: 42%;
+      left: 19%;
+      width: 5%;
+      height: auto;
+      z-index: 10;
+      pointer-events: none;
+      display: none; /* Will be enabled when steam.png is added */
+    }
+    
+    /* CSS Coffee steam animation (backup) */
     .steam-container {
       position: absolute;
       bottom: 42%;
@@ -214,7 +226,12 @@
 </head>
 <body>
   <div class="scene">
-    <!-- Coffee steam animation -->
+    <!-- Animated Steam PNG (add your steam.png file) -->
+    <!-- Uncomment this line when you have the animated steam PNG:
+    <img src="steam.png" alt="" class="steam-animation" style="display: block;">
+    -->
+    
+    <!-- CSS Coffee steam animation (backup - remove when using animated PNG) -->
     <div class="steam-container">
       <div class="steam"></div>
       <div class="steam"></div>
