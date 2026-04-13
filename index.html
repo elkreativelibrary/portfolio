@@ -51,7 +51,7 @@
       height: 15%;
     }
     
-    /* Animated steam PNG overlay */
+    /* Animated steam GIF overlay */
     .steam-animation {
       position: absolute;
       bottom: 42%;
@@ -60,73 +60,6 @@
       height: auto;
       z-index: 10;
       pointer-events: none;
-      display: none; /* Will be enabled when steam.png is added */
-    }
-    
-    /* CSS Coffee steam animation (backup) */
-    .steam-container {
-      position: absolute;
-      bottom: 42%;
-      left: 20.5%;
-      width: 2%;
-      height: 12%;
-      z-index: 10;
-      overflow: hidden;
-      pointer-events: none;
-    }
-    
-    .steam {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 4px;
-      height: 30px;
-      background: linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
-      border-radius: 50%;
-      transform: translateX(-50%);
-      animation: steam-rise 3s ease-in-out infinite;
-    }
-    
-    .steam:nth-child(1) {
-      animation-delay: 0s;
-      left: 40%;
-    }
-    
-    .steam:nth-child(2) {
-      animation-delay: 1s;
-      left: 50%;
-      width: 5px;
-      height: 35px;
-    }
-    
-    .steam:nth-child(3) {
-      animation-delay: 2s;
-      left: 60%;
-      width: 4px;
-      height: 32px;
-    }
-    
-    @keyframes steam-rise {
-      0% {
-        bottom: 0;
-        opacity: 0;
-        transform: translateX(-50%) scale(1);
-      }
-      
-      10% {
-        opacity: 0.6;
-      }
-      
-      50% {
-        opacity: 0.4;
-        transform: translateX(-50%) translateY(-40px) scale(1.5);
-      }
-      
-      100% {
-        bottom: 100%;
-        opacity: 0;
-        transform: translateX(-50%) translateY(-80px) scale(2);
-      }
     }
     
     /* Screen glitch overlay */
@@ -226,17 +159,8 @@
 </head>
 <body>
   <div class="scene">
-    <!-- Animated Steam PNG (add your steam.png file) -->
-    <!-- Uncomment this line when you have the animated steam PNG:
-    <img src="steam.png" alt="" class="steam-animation" style="display: block;">
-    -->
-    
-    <!-- CSS Coffee steam animation (backup - remove when using animated PNG) -->
-    <div class="steam-container">
-      <div class="steam"></div>
-      <div class="steam"></div>
-      <div class="steam"></div>
-    </div>
+    <!-- Animated Steam GIF -->
+    <img src="steam.gif" alt="" class="steam-animation" style="display: block;">
     
     <!-- Screen glitch effect -->
     <div class="screen-glitch"></div>
