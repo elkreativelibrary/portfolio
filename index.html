@@ -29,46 +29,47 @@
 <body>
     <div id="root"></div>
     
-    <!-- React & ReactDOM -->
+    <!-- React & ReactDOM from CDN -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
-    <!-- Babel Standalone for JSX -->
+    <!-- Babel Standalone -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
-    <!-- Your React Components -->
+    <!-- Application Code -->
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const { useState } = React;
 
-        // WeatherMarquee Component
+        // Weather Marquee Component
         function WeatherMarquee() {
           return (
-            <div className="fixed top-0 left-0 w-full bg-[#f5f5f7] border-b border-black py-[10px] overflow-hidden z-[1000]">
-              <div className="flex gap-[50px] animate-[scroll_30s_linear_infinite] whitespace-nowrap">
-                <div className="flex items-center gap-[50px] pr-[50px]">
-                  <WeatherItem />
-                  <WeatherItem german />
-                  <WeatherItem />
-                  <WeatherItem german />
-                </div>
-                <div className="flex items-center gap-[50px] pr-[50px]">
-                  <WeatherItem />
-                  <WeatherItem german />
-                  <WeatherItem />
-                  <WeatherItem german />
+            <>
+              <div className="fixed top-0 left-0 w-full bg-[#f5f5f7] border-b border-black py-[10px] overflow-hidden z-[1000]">
+                <div className="flex gap-[50px] animate-scroll whitespace-nowrap">
+                  <div className="flex items-center gap-[50px] pr-[50px]">
+                    <WeatherItem />
+                    <WeatherItem german />
+                    <WeatherItem />
+                    <WeatherItem german />
+                  </div>
+                  <div className="flex items-center gap-[50px] pr-[50px]">
+                    <WeatherItem />
+                    <WeatherItem german />
+                    <WeatherItem />
+                    <WeatherItem german />
+                  </div>
                 </div>
               </div>
               <style>{`
                 @keyframes scroll {
-                  0% {
-                    transform: translateX(0);
-                  }
-                  100% {
-                    transform: translateX(-50%);
-                  }
+                  0% { transform: translateX(0); }
+                  100% { transform: translateX(-50%); }
+                }
+                .animate-scroll {
+                  animation: scroll 30s linear infinite;
                 }
               `}</style>
-            </div>
+            </>
           );
         }
 
@@ -93,12 +94,12 @@
           );
         }
 
-        // PortfolioCard Component
+        // Portfolio Card Component
         function PortfolioCard({ image, title, description, href = "#" }) {
           return (
             
               href={href}
-              className="bg-white shadow-[0px_10px_20px_rgba(0,0,0,0.12)] overflow-hidden no-underline text-[#1C1C1C] rounded-[8px] transition-all duration-200 hover:translate-y-[-4px] hover:shadow-[0px_15px_30px_rgba(0,0,0,0.18)]"
+              className="block bg-white shadow-[0px_10px_20px_rgba(0,0,0,0.12)] overflow-hidden no-underline text-[#1C1C1C] rounded-[8px] transition-all duration-200 hover:translate-y-[-4px] hover:shadow-[0px_15px_30px_rgba(0,0,0,0.18)]"
             >
               <img
                 src={image}
